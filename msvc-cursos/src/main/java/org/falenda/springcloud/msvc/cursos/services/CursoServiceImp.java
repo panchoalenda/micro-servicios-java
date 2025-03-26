@@ -1,6 +1,7 @@
 package org.falenda.springcloud.msvc.cursos.services;
 
-import org.falenda.springcloud.msvc.cursos.entities.Curso;
+import org.falenda.springcloud.msvc.cursos.models.Usuario;
+import org.falenda.springcloud.msvc.cursos.models.entity.Curso;
 import org.falenda.springcloud.msvc.cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,20 @@ public class CursoServiceImp implements CursoService {
     @Transactional
     public void eliminar(Long id) {
         cursoRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
     }
 }

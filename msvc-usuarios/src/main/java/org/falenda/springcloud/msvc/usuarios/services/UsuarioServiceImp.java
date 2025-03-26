@@ -1,6 +1,6 @@
 package org.falenda.springcloud.msvc.usuarios.services;
 
-import org.falenda.springcloud.msvc.usuarios.models.entitys.Usuario;
+import org.falenda.springcloud.msvc.usuarios.models.entity.Usuario;
 import org.falenda.springcloud.msvc.usuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

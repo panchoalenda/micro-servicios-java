@@ -1,7 +1,7 @@
 package org.falenda.springcloud.msvc.cursos.controllers;
 
 import jakarta.validation.Valid;
-import org.falenda.springcloud.msvc.cursos.entities.Curso;
+import org.falenda.springcloud.msvc.cursos.models.entity.Curso;
 import org.falenda.springcloud.msvc.cursos.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

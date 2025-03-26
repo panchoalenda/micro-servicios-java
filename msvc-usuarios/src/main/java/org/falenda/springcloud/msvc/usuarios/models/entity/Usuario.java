@@ -1,10 +1,9 @@
-package org.falenda.springcloud.msvc.usuarios.models.entitys;
+package org.falenda.springcloud.msvc.usuarios.models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "usuarios")
@@ -35,4 +34,5 @@ public class Usuario {
 //    @NotEmpty(message = "El campo password no puede estar vacío")
     @NotEmpty
     private String password;
+
 }

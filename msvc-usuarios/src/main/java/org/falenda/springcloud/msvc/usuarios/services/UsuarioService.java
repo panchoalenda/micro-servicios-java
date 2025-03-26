@@ -1,6 +1,6 @@
 package org.falenda.springcloud.msvc.usuarios.services;
 
-import org.falenda.springcloud.msvc.usuarios.models.entitys.Usuario;
+import org.falenda.springcloud.msvc.usuarios.models.entity.Usuario;
 
 import java.util.List;
 import java.util.Optional;

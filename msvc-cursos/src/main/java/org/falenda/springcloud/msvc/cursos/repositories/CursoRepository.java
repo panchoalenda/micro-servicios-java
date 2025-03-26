@@ -1,6 +1,6 @@
 package org.falenda.springcloud.msvc.cursos.repositories;
 
-import org.falenda.springcloud.msvc.cursos.entities.Curso;
+import org.falenda.springcloud.msvc.cursos.models.entity.Curso;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

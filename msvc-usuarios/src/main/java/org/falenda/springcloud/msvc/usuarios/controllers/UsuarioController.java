@@ -1,12 +1,9 @@
 package org.falenda.springcloud.msvc.usuarios.controllers;
 
-import feign.Response;
 import jakarta.validation.Valid;
-import org.falenda.springcloud.msvc.usuarios.models.entitys.Usuario;
+import org.falenda.springcloud.msvc.usuarios.models.entity.Usuario;
 import org.falenda.springcloud.msvc.usuarios.services.UsuarioService;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
