@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/")
@@ -32,10 +29,22 @@ public class UsuarioController {
         return usuarioOp.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/usuarios-por-curso")
+    public ResponseEntity<List<Usuario>> listaDetalle(@RequestParam List<Long> ids) {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.listarPorIds(ids));
+    }
+
     @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult bindingResult) {
+
+        Optional<Usuario> o = usuarioService.porEmail(usuario.getEmail());
+
         if (bindingResult.hasErrors()) {
             return validar(bindingResult);
+        }
+
+        if (!usuario.getEmail().isEmpty() && o.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario con este correo electrónico!!"));
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(usuario));
     }
@@ -44,11 +53,16 @@ public class UsuarioController {
     public ResponseEntity<?> editar(@PathVariable Long id, @Valid @RequestBody Usuario usuario, BindingResult bindingResult) {
         Optional<Usuario> usuarioOptional = usuarioService.porId(id);
 
+        Optional<Usuario> o = usuarioService.porEmail(usuario.getEmail());
+
         if (bindingResult.hasErrors()) {
             return validar(bindingResult);
         }
 
         if (usuarioOptional.isPresent()) {
+            if (!usuario.getEmail().isEmpty() && !usuario.getEmail().equalsIgnoreCase(usuarioOptional.get().getEmail()) && o.isPresent()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario con este correo electrónico!!"));
+            }
             Usuario newUsuario = usuarioOptional.get();
             newUsuario.setNombre(usuario.getNombre());
             newUsuario.setEmail(usuario.getEmail());
@@ -62,7 +76,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> eliminar(@PathVariable Long id) {
         Optional<Usuario> usuarioOptional = usuarioService.porId(id);
         if (usuarioOptional.isPresent()) {
-            usuarioService.delete(id);
+            usuarioService.eliminar(id);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

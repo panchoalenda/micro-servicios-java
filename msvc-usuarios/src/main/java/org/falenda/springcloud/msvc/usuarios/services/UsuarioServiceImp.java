@@ -28,6 +28,12 @@ public class UsuarioServiceImp implements UsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> listarPorIds(List<Long> ids) {
+        return (List<Usuario>) usuarioRepository.findAllById(ids);
+    }
+
+    @Override
     @Transactional
     public Usuario guardar(Usuario usuario) {
         return usuarioRepository.save(usuario);
@@ -35,7 +41,12 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Override
     @Transactional
-    public void delete(Long id ) {
+    public void eliminar(Long id ) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Usuario> porEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 }
