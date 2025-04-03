@@ -1,5 +1,6 @@
 package org.falenda.springcloud.msvc.usuarios.services;
 
+import org.falenda.springcloud.msvc.usuarios.clients.CursoClienteRest;
 import org.falenda.springcloud.msvc.usuarios.models.entity.Usuario;
 import org.falenda.springcloud.msvc.usuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private CursoClienteRest clienteRest;
 
     @Override
     @Transactional(readOnly = true)
@@ -43,6 +47,7 @@ public class UsuarioServiceImp implements UsuarioService {
     @Transactional
     public void eliminar(Long id ) {
         usuarioRepository.deleteById(id);
+        clienteRest.eliminarUsuario(id);
     }
 
     @Override

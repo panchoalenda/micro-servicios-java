@@ -44,7 +44,7 @@ public class UsuarioController {
         }
 
         if (!usuario.getEmail().isEmpty() && o.isPresent()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario con este correo electrónico!!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", "Ya existe un usuario/a con este correo electrónico!!"));
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(usuario));
     }

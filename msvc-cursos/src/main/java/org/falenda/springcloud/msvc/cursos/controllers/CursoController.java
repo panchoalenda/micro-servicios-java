@@ -104,7 +104,7 @@ public class CursoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @DeleteMapping("/eliminar-usuario/{cursoId}")
+    @DeleteMapping("/eliminar-usuario/{cursoId}") //Desasigno un usuario de un curso
     public ResponseEntity<?> eliminarUsuario(@RequestBody Usuario usuario, @PathVariable Long cursoId) {
         Optional<Usuario> o;
         try {
@@ -121,6 +121,13 @@ public class CursoController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @DeleteMapping("/eliminar-curso-usuario/{id}") //Elimino un usuario del curso que fue eliminado en la BBDD Usuario
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) {
+        cursoService.eliminarCursoUsuarioPorId(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 
 //    @GetMapping("/usuarios-por-curso")
 //    public ResponseEntity<List<Usuario>> listaDetalle(@RequestParam List<Long> ids){

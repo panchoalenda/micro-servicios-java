@@ -2,7 +2,6 @@ package org.falenda.springcloud.msvc.cursos.clients;
 
 import org.falenda.springcloud.msvc.cursos.models.Usuario;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
